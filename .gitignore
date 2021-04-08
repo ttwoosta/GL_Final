@@ -336,3 +336,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+!cube.obj
+!icosa.obj
+!octo.obj
+!sphere.obj
