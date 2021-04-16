@@ -92,21 +92,9 @@ Project::Project(int w, int h)
         //o->transform = glm::translate(gfx::Matrix4{}, gfx::Vector3{ 2.0f, 0.0f, 0.0f });
         o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .75f }), gfx::Vector3{ -2.0f, 2.0f, 0.0f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
-        
-        auto e = new gl::Object{ sun, renderer };
-        objects.push_back(e);
-        e->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
-        e->tint = gfx::ColorAlpha{ .35f,.35f,.35f,1.0f };
+
         // set the object's surface from one of the texture pointers
         // Load texture into memory       
-
-        //Venus
-        auto v = new gl::Object{ sun,renderer };
-        objects.push_back(v);
-        v->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .3f }), gfx::Vector3{ 10.5f, 0.0f, 0.0f });
-        v->tint = gfx::ColorAlpha{ .65f,.35f,.35f,1.0f };
-
-
         gl::Texture* sand = new gfx::Texture;
         *sand <<= image::TGA{ "suncyl1.tga" };
 
@@ -242,7 +230,7 @@ int Project::operator()(const std::vector<std::string>& args)
 {
     using std::chrono::duration_cast;
 
-    cam.Access()->projection = glm::orthoLH(-2.0f, 14.0f, -7.0f, 7.0f, 1.0f, 200.0f);
+    //cam.Access()->projection = glm::orthoLH(-2.0f, 14.0f, -7.0f, 7.0f, 1.0f, 200.0f);
 
     sdl::Ticks previous = SDL.GetTicks();
     while (running) {
