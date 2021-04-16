@@ -50,6 +50,18 @@
     <CopyFileToFolders Include="lichen.tga" />
     <CopyFileToFolders Include="sandstone.tga" />
     <CopyFileToFolders Include="sun.tga" />
+    <CopyFileToFolders Include="earth_8k.tga">
+      <Filter>textures</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="8k_jupiter.tga">
+      <Filter>textures</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="suncyl1.tga">
+      <Filter>textures</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="2k_neptune.tga">
+      <Filter>textures</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GL">
@@ -60,6 +72,9 @@
     </Filter>
     <Filter Include="formats">
       <UniqueIdentifier>{7a8c7cb1-312e-42cd-a778-6de9ee062de8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="textures">
+      <UniqueIdentifier>{172718a0-b156-472b-a6c3-98d2ce061106}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,5 +112,22 @@
     <ClInclude Include="GL\Lighting.h">
       <Filter>GL</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="8k_mars.tga">
+      <Filter>textures</Filter>
+    </Image>
+    <Image Include="8k_mercury.tga">
+      <Filter>textures</Filter>
+    </Image>
+    <Image Include="8k_moon.tga">
+      <Filter>textures</Filter>
+    </Image>
+    <Image Include="8k_saturn.tga">
+      <Filter>textures</Filter>
+    </Image>
+    <Image Include="uranusmap.tga">
+      <Filter>textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

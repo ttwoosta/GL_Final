@@ -439,6 +439,23 @@ xcopy /y "$(ProjectDir)*.glsl" "$(OutDir)"</Command>
   <ItemGroup>
     <CopyFileToFolders Include="sun.tga" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="earth_8k.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="8k_jupiter.tga" />
+    <CopyFileToFolders Include="8k_mars.tga" />
+    <CopyFileToFolders Include="8k_mercury.tga" />
+    <CopyFileToFolders Include="8k_moon.tga" />
+    <CopyFileToFolders Include="8k_saturn.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="suncyl1.tga" />
+    <CopyFileToFolders Include="uranusmap.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="2k_neptune.tga" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
