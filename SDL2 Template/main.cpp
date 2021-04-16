@@ -80,8 +80,6 @@ Project::Project(int w, int h)
     auto sun = std::make_shared<gfx::Mesh>();
     *sun <<= geometry::OBJ{ "sphere.obj" };
 
-    auto mercury = std::make_shared<gfx::Mesh>();
-    *mercury <<= geometry::OBJ{ "sphere.obj" };
 
     // create another texture shared_ptr and initialize its contents from another TGA.
 
@@ -91,7 +89,7 @@ Project::Project(int w, int h)
         //o->transform = glm::translate(gfx::Matrix4{}, gfx::Vector3{ 2.0f, 0.0f, 0.0f });
         o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
         
-        auto e = new gl::Object{ mercury, renderer };
+        auto e = new gl::Object{ sun, renderer };
         objects.push_back(e);
         e->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
         e->tint = gfx::ColorAlpha{ .35f,.35f,.35f,1.0f };
