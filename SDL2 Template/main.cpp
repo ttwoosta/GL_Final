@@ -12,6 +12,7 @@
 #include <chrono>
 #include <functional>
 #include <unordered_map>
+#include <glm/gtx/string_cast.hpp>
 
 using namespace std::string_literals;
 
@@ -242,19 +243,87 @@ Project::Project(int w, int h)
     }
 }
 
+static bool isHoldingShiftKey = false;
+static float centerCamera = 9.5f;
+
 int Project::operator()(const std::vector<std::string>& args)
 {
+    using namespace std;
     using std::chrono::duration_cast;
-
-    //cam.Access()->projection = glm::orthoLH(-2.0f, 14.0f, -7.0f, 7.0f, 1.0f, 200.0f);
-
+    SDL_Event event;
     sdl::Ticks previous = SDL.GetTicks();
+
     while (running) {
+        while (SDL_PollEvent(&event) != 0) {
+            if (event.type == SDL_QUIT)
+                running = false;
+
+            if (event.type == SDL_KEYDOWN) {
+                SDL_Keycode keySym = event.key.keysym.sym;
+
+                if (keySym == SDLK_DOWN)
+                    cam << gfx::Vector3{ 0,0.2f,0 };
+                else if (keySym == SDLK_UP)
+                    cam << gfx::Vector3{ 0,-0.2f,0 };
+
+                if (keySym == SDLK_LEFT)
+                    cam << gfx::Vector3{ 0.2f,0,0 };
+                else if (keySym == SDLK_RIGHT)
+                    cam << gfx::Vector3{ -0.2f,0,0 };
+
+                else if (keySym == SDLK_LSHIFT)
+                    isHoldingShiftKey = true;
+
+                else if (keySym == SDLK_r) {
+                    cam.Access()->facing = glm::lookAtLH(gfx::Point3{ 6, 2, -16 }, gfx::Point3{ 9.5f,0.0f,0.0f }, gfx::Vector3{ 0, 1, 0 });
+                }
+
+                else if (keySym == SDLK_SPACE) {
+                    auto c = cam.Access();
+                    cout << "Facing: " << glm::to_string(c->facing) << endl;
+                }
+                else if (keySym == SDLK_p) {
+                    auto c = cam.Access();
+                    cout << "Projection: " << glm::to_string(c->projection) << endl;
+                }
+            }
+            else if (event.type == SDL_KEYUP) {
+                SDL_Keycode keySym = event.key.keysym.sym;
+
+                if (keySym == SDLK_LSHIFT)
+                    isHoldingShiftKey = false;
+            }
+            else if (event.type == SDL_MOUSEWHEEL)
+            {
+                SDL_Keycode keySym = event.key.keysym.sym;
+
+                if (event.wheel.y > 0) // scroll up
+                {
+                    if (isHoldingShiftKey) {
+                        centerCamera -= 0.1f;
+                        cam.Access()->facing = glm::lookAtLH(gfx::Point3{ 6, 2, -16 }, gfx::Point3{ centerCamera,0.0f,0.0f }, gfx::Vector3{ 0, 1, 0 });
+                    }
+                    else
+                        cam << gfx::Vector3{ 0,0,-0.2f };
+                }
+                else if (event.wheel.y < 0) // scroll down
+                {
+                    if (isHoldingShiftKey) {
+                        centerCamera += 0.1f;
+                        cam.Access()->facing = glm::lookAtLH(gfx::Point3{ 6, 2, -16 }, gfx::Point3{ centerCamera,0.0f,0.0f }, gfx::Vector3{ 0, 1, 0 });
+                    }
+                    else
+                        cam << gfx::Vector3{ 0,0, 0.2f };
+                }
+            }
+        }
+
         sdl::Ticks now = SDL.GetTicks();
         update(duration_cast<seconds>(now - previous), duration_cast<seconds>(now));
         previous = now;
         render();
     }
+
     return 0;
 }
 
@@ -305,7 +374,12 @@ int main(int argc, char* argv[])
 {
     using namespace std;
     cout << "Author: Tu Tong (0262620)\n";
-
+    cout << "Use arrow keys to move cam up/down/lef/right\n";
+    cout << "Press Mouse scroll up/down to adjust the zoom\n";
+    cout << "Press Mouse scroll up/down with left Shift to adjust the center of camera\n";
+    cout << "Press R key to reset position\n";
+    cout << "Press Space key to print the camera position\n";
+    
     try {
         return Project{1280, 960}(vector<string>{argv, argv + argc});
     } catch (std::exception& e) {
