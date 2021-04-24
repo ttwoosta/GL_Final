@@ -90,7 +90,7 @@ Project::Project(int w, int h)
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
         //o->transform = glm::translate(gfx::Matrix4{}, gfx::Vector3{ 2.0f, 0.0f, 0.0f });
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), gfx::Vector3{ 0.0f, 0.0f, 0.0f });
+        o->transform = glm::rotate(glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), gfx::Vector3{ 0.0f, 0.0f, 0.0f }), 2.0f / 3.0f, gfx::Vector3{ 0,0,1 });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -104,7 +104,7 @@ Project::Project(int w, int h)
     {   // The mercury
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
+        o->transform = glm::translate(glm::rotate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), 2.0f/3.0f, gfx::Vector3{ 0,0,1 }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -264,7 +264,6 @@ void Project::update(seconds frame, seconds total)
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
 
-
     /* TODO: Disable translation and glow light
     
     objects.front()->transform = glm::translate(gfx::Matrix4{}, { 2 + sin(total.count()), 0.0f, 0.0f });
@@ -296,7 +295,7 @@ void Project::render() const
 {
     output.Clear();
     
-    for (auto& object : objects) { cam << *object; }
+    for (auto& object : objects) {cam << *object; }
 
     output.Refresh();
 }
