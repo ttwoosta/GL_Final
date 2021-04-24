@@ -263,6 +263,11 @@ void Project::update(seconds frame, seconds total)
     std::unordered_map<sdl::EventType, std::function<void(const sdl::Event&)>> responses;
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
+    for (int i = 1; i < 10; ++i) {
+       // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
+       objects[i]->transform = glm::rotate(glm::translate(objects[i]->transform,gfx::Vector3{ 0.02f, 0.0f, 0.0f }), frame.count(), gfx::Vector3{ 0,0,1 });
+    }
+   
 
     /* TODO: Disable translation and glow light
     
