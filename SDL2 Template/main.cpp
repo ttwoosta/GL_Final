@@ -91,7 +91,7 @@ Project::Project(int w, int h)
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
         //o->transform = glm::translate(gfx::Matrix4{}, gfx::Vector3{ 2.0f, 0.0f, 0.0f });
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), gfx::Vector3{ 0.0f, 0.0f, 0.0f });
+        o->transform = glm::rotate(glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), gfx::Vector3{ 0.0f, 0.0f, 0.0f }), 2.0f / 3.0f, gfx::Vector3{ 0,0,1 });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -105,7 +105,7 @@ Project::Project(int w, int h)
     {   // The mercury
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
+        o->transform = glm::translate(glm::rotate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), 2.0f/3.0f, gfx::Vector3{ 0,0,1 }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -332,7 +332,11 @@ void Project::update(seconds frame, seconds total)
     std::unordered_map<sdl::EventType, std::function<void(const sdl::Event&)>> responses;
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
-
+    for (int i = 1; i < 10; ++i) {
+       // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
+       objects[i]->transform = glm::rotate(glm::translate(objects[i]->transform,gfx::Vector3{ 0.02f, 0.0f, 0.0f }), frame.count(), gfx::Vector3{ 0,0,1 });
+    }
+   
 
     /* TODO: Disable translation and glow light
     
@@ -365,7 +369,7 @@ void Project::render() const
 {
     output.Clear();
     
-    for (auto& object : objects) { cam << *object; }
+    for (auto& object : objects) {cam << *object; }
 
     output.Refresh();
 }
