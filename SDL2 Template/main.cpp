@@ -91,7 +91,11 @@ Project::Project(int w, int h)
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
         //o->transform = glm::translate(gfx::Matrix4{}, gfx::Vector3{ 2.0f, 0.0f, 0.0f });
-        o->transform = glm::rotate(glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), gfx::Vector3{ 0.0f, 0.0f, 0.0f }), 2.0f / 3.0f, gfx::Vector3{ 0,0,1 });
+        o->transform = glm::rotate(
+            glm::translate(
+                glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), 
+                gfx::Vector3{ 10.0f, 0.0f, 0.0f }), 2.0f / 3.0f, 
+            gfx::Vector3{ 0,0,1 });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -333,8 +337,16 @@ void Project::update(seconds frame, seconds total)
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
     for (int i = 1; i < 10; ++i) {
-       // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
-       objects[i]->transform = glm::rotate(glm::translate(objects[i]->transform,gfx::Vector3{ 0.02f, 0.0f, 0.0f }), frame.count(), gfx::Vector3{ 0,0,1 });
+        // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
+        gl::Matrix4 coord = glm::translate(
+            objects[i]->transform, 
+            gfx::Vector3{ 0.05f, 0.0f, 0.05f });
+
+        // https://stackoverflow.com/questions/8844585/glm-rotate-usage-in-opengl
+        objects[i]->transform = glm::rotate(
+           coord,
+           frame.count(), 
+           gfx::Vector3{ 0,1,0 });
     }
    
 
