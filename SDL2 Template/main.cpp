@@ -60,6 +60,8 @@ private:
     mutable gfx::Camera cam;
     gfx::Lights<4> lights;
     std::vector<gfx::Object*> objects;
+
+    gl::Object *mEarth;
 };
 
 template <typename E, typename C = E>
@@ -106,39 +108,40 @@ Project::Project(int w, int h)
         o->surface = std::shared_ptr<gfx::Texture>{ sand };
     }
 
-    {   // The mercury
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::rotate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), 2.0f/3.0f, gfx::Vector3{ 0,0,1 }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The mercury
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::rotate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), 2.0f/3.0f, gfx::Vector3{ 0,0,1 }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "8k_mercury.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "8k_mercury.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
     
     // The Venus
-    {   
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .45f }), gfx::Vector3{ 11.0f, 0.0f, 0.0f });
-        o->tint = gfx::ColorAlpha{ 1.0f, 0.6f, 0.5f, 1.0f };
+    //{   
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .45f }), gfx::Vector3{ 11.0f, 0.0f, 0.0f });
+    //    o->tint = gfx::ColorAlpha{ 1.0f, 0.6f, 0.5f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory    
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory    
 
-        /* Not ready yet
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "earth_8k.tga" };
+    //    /* Not ready yet
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "earth_8k.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };*/
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };*/
+    //}
 
     {   // The earth
         auto o = new gl::Object{ sun, renderer };
+        mEarth = o;
         objects.push_back(o);
         o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .48f }), gfx::Vector3{ 14.5f, 0.0f, 0.0f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
@@ -151,88 +154,88 @@ Project::Project(int w, int h)
         o->surface = std::shared_ptr<gfx::Texture>{ sand };
     }
 
-    {   // The moon
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f }), gfx::Vector3{ 38.0f, 4.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The moon
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f }), gfx::Vector3{ 38.0f, 4.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "8k_moon.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "8k_moon.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
-    {   // The mars
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .35f }), gfx::Vector3{ 26.5f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
+    //{   // The mars
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .35f }), gfx::Vector3{ 26.5f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "8k_mars.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "8k_mars.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
 
-    {   // The jupiter
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .8f }), gfx::Vector3{ 15.0f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The jupiter
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .8f }), gfx::Vector3{ 15.0f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "8k_jupiter.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "8k_jupiter.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
 
-    {   // The saturn
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .7f }), gfx::Vector3{ 22.0f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The saturn
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .7f }), gfx::Vector3{ 22.0f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "8k_saturn.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "8k_saturn.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
 
-    {   // The uranus
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .55f }), gfx::Vector3{ 33.0f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The uranus
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .55f }), gfx::Vector3{ 33.0f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "uranusmap.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "uranusmap.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
 
-    {   // The neptune
-        auto o = new gl::Object{ sun, renderer };
-        objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .52f }), gfx::Vector3{ 40.0f, 0.0f, 0.0f });
-        //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
+    //{   // The neptune
+    //    auto o = new gl::Object{ sun, renderer };
+    //    objects.push_back(o);
+    //    o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .52f }), gfx::Vector3{ 40.0f, 0.0f, 0.0f });
+    //    //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
-        // set the object's surface from one of the texture pointers
-        // Load texture into memory       
-        gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "2k_neptune.tga" };
+    //    // set the object's surface from one of the texture pointers
+    //    // Load texture into memory       
+    //    gl::Texture* sand = new gfx::Texture;
+    //    *sand <<= image::TGA{ "2k_neptune.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };
-    }
+    //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
+    //}
 
     renderer << lights;
     renderer.Uniform<gfx::Color>("ambient") = gfx::Color{ .95f };
@@ -249,6 +252,9 @@ Project::Project(int w, int h)
 
 static bool isHoldingShiftKey = false;
 static float centerCamera = 9.5f;
+static int countDown = 1000;
+static float m_angle = 0.0f;
+static gl::Matrix4 m_coord;
 
 int Project::operator()(const std::vector<std::string>& args)
 {
@@ -289,6 +295,25 @@ int Project::operator()(const std::vector<std::string>& args)
                 else if (keySym == SDLK_p) {
                     auto c = cam.Access();
                     cout << "Projection: " << glm::to_string(c->projection) << endl;
+                }
+                else if (keySym == SDLK_q) {
+                    cout << "Angle: " << m_angle << endl;
+                    cout << "Coordinate: " << glm::to_string(mEarth->transform) << endl;
+                }
+                else if (keySym == SDLK_d) {
+                    auto coord = mEarth->transform;
+                    coord = glm::translate(
+                        mEarth->transform,
+                        gfx::Vector3{ 0.05f, 0.0f, 0.05f });
+
+                    coord = glm::rotate(
+                        coord,
+                        0.016f,
+                        gfx::Vector3{ 0,1,0 });
+
+                    mEarth->transform = coord;
+
+                    cout << "Shift to coordinate: " << glm::to_string(coord) << endl;
                 }
             }
             else if (event.type == SDL_KEYUP) {
@@ -331,22 +356,30 @@ int Project::operator()(const std::vector<std::string>& args)
     return 0;
 }
 
+
+
 void Project::update(seconds frame, seconds total)
 {
     std::unordered_map<sdl::EventType, std::function<void(const sdl::Event&)>> responses;
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
-    for (int i = 1; i < 10; ++i) {
+    for (int i = 1; i < objects.size(); i++) {
         // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
-        gl::Matrix4 coord = glm::translate(
+        m_coord = objects[i]->transform;
+
+        /*mEarth->transform = glm::translate(
             objects[i]->transform, 
             gfx::Vector3{ 0.05f, 0.0f, 0.05f });
 
+        auto f = frame.count();
+        m_angle = f;*/
+
+
         // https://stackoverflow.com/questions/8844585/glm-rotate-usage-in-opengl
-        objects[i]->transform = glm::rotate(
+        /*objects[i]->transform = glm::rotate(
            coord,
-           frame.count(), 
-           gfx::Vector3{ 0,1,0 });
+           f, 
+           gfx::Vector3{ 0,1,0 });*/
     }
    
 
