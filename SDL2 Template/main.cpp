@@ -349,41 +349,43 @@ void Project::update(seconds frame, seconds total)
            frame.count(), 
            gfx::Vector3{ 0,1,0 });
     }*/
+    //sun
+    objects[0]->transform = glm::rotate(objects[0]->transform, frame.count() * -0.5f, gfx::Vector3{ 0,1,0 }); 
     //mercury
-    objects[1]->transform = glm::translate(objects[1]->transform, gfx::Vector3{ -5.0f, 0.0f,20.0f });
+    objects[1]->transform = glm::translate(objects[1]->transform, gfx::Vector3{ -5.0f, 0.0f,20.0f }); //orbit
     objects[1]->transform = glm::translate(glm::rotate(objects[1]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{0.05f,0,0.05f});
     objects[1]->transform = glm::translate(objects[1]->transform, gfx::Vector3{ 5.0f, 0.0f,-20.0f });
     //venus
     objects[2]->transform = glm::translate(objects[2]->transform, gfx::Vector3{ -5.0f, 0.0f, 24.0f });
-    objects[2]->transform = glm::translate(glm::rotate(objects[2]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0,0.05f });
+    objects[2]->transform = glm::translate(glm::rotate(objects[2]->transform, frame.count() * 0.8f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0,0.05f });
     objects[2]->transform = glm::translate(objects[2]->transform, gfx::Vector3{ 5.0f, 0.0f, -24.0f });
     //earth
     objects[3]->transform = glm::translate(objects[3]->transform, gfx::Vector3{ -5.0f, 0.0f,30.5f });
-    objects[3]->transform = glm::translate(glm::rotate(objects[3]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[3]->transform = glm::translate(glm::rotate(objects[3]->transform, frame.count() * 0.75f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[3]->transform = glm::translate(objects[3]->transform, gfx::Vector3{ 5.0f, 0.0f,-30.5f });
     //moon
     objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ -5.0f, 4.0f,55.5f });
-    objects[4]->transform = glm::translate(glm::rotate(objects[4]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[4]->transform = glm::translate(glm::rotate(objects[4]->transform, frame.count() * 0.75f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 5.0f, -4.0f,-55.5f });
     //mars
     objects[5]->transform = glm::translate(objects[5]->transform, gfx::Vector3{ -5.0f, 0.0f,51.5f });
-    objects[5]->transform = glm::translate(glm::rotate(objects[5]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[5]->transform = glm::translate(glm::rotate(objects[5]->transform, frame.count() * 0.7f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[5]->transform = glm::translate(objects[5]->transform, gfx::Vector3{ 5.0f, 0.0f,-51.5f });
     //juipter
     objects[6]->transform = glm::translate(objects[6]->transform, gfx::Vector3{ -5.0f, 0.0f,48.5f });
-    objects[6]->transform = glm::translate(glm::rotate(objects[6]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[6]->transform = glm::translate(glm::rotate(objects[6]->transform, frame.count() * 0.5f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[6]->transform = glm::translate(objects[6]->transform, gfx::Vector3{ 5.0f, 0.0f,-48.5f });
     //saturn
     objects[7]->transform = glm::translate(objects[7]->transform, gfx::Vector3{ -5.0f, 0.0f,73.5f });
-    objects[7]->transform = glm::translate(glm::rotate(objects[7]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[7]->transform = glm::translate(glm::rotate(objects[7]->transform, frame.count() * 0.45f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[7]->transform = glm::translate(objects[7]->transform, gfx::Vector3{ 5.0f, 0.0f,-73.5f });
     //uranus
     objects[8]->transform = glm::translate(objects[8]->transform, gfx::Vector3{ -5.0f, 0.0f,120.5f });
-    objects[8]->transform = glm::translate(glm::rotate(objects[8]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[8]->transform = glm::translate(glm::rotate(objects[8]->transform, frame.count() * 0.4f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[8]->transform = glm::translate(objects[8]->transform, gfx::Vector3{ 5.0f, 0.0f,-120.5f });
     //neptune
     objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ -5.0f, 0.0f,145.5f });
-    objects[9]->transform = glm::translate(glm::rotate(objects[9]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[9]->transform = glm::translate(glm::rotate(objects[9]->transform, frame.count() * 0.3f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ 5.0f, 0.0f,-145.5f });
 
     /* TODO: Disable translation and glow light
