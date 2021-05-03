@@ -308,7 +308,7 @@ int Project::operator()(const std::vector<std::string>& args)
 
                     coord = glm::rotate(
                         coord,
-                        0.016f,
+                        0.010f,
                         gfx::Vector3{ 0,1,0 });
 
                     mEarth->transform = coord;
