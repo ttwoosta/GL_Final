@@ -94,7 +94,7 @@ Project::Project(int w, int h)
         o->transform = glm::rotate(
             glm::translate(
                 glm::scale(gfx::Matrix4{}, gfx::Vector3{ 1.0f }), 
-                gfx::Vector3{ 10.0f, 0.0f, 0.0f }), 2.0f / 3.0f, 
+                gfx::Vector3{ 0.0f, 0.0f, 3.0f }), 2.0f / 3.0f, 
             gfx::Vector3{ 0,0,1 });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
@@ -109,7 +109,7 @@ Project::Project(int w, int h)
     {   // The mercury
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::rotate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f }), 2.0f/3.0f, gfx::Vector3{ 0,0,1 }), gfx::Vector3{ 10.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .30f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -124,7 +124,7 @@ Project::Project(int w, int h)
     {   
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .45f }), gfx::Vector3{ 11.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .45f });
         o->tint = gfx::ColorAlpha{ 1.0f, 0.6f, 0.5f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -140,7 +140,7 @@ Project::Project(int w, int h)
     {   // The earth
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .48f }), gfx::Vector3{ 14.5f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .48f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -154,7 +154,7 @@ Project::Project(int w, int h)
     {   // The moon
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f }), gfx::Vector3{ 38.0f, 4.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .2f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -167,7 +167,7 @@ Project::Project(int w, int h)
     {   // The mars
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .35f }), gfx::Vector3{ 26.5f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .35f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -181,7 +181,7 @@ Project::Project(int w, int h)
     {   // The jupiter
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .8f }), gfx::Vector3{ 15.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .8f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -195,7 +195,7 @@ Project::Project(int w, int h)
     {   // The saturn
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .7f }), gfx::Vector3{ 22.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .7f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -209,7 +209,7 @@ Project::Project(int w, int h)
     {   // The uranus
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .55f }), gfx::Vector3{ 33.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .55f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -223,7 +223,7 @@ Project::Project(int w, int h)
     {   // The neptune
         auto o = new gl::Object{ sun, renderer };
         objects.push_back(o);
-        o->transform = glm::translate(glm::scale(gfx::Matrix4{}, gfx::Vector3{ .52f }), gfx::Vector3{ 40.0f, 0.0f, 0.0f });
+        o->transform = glm::scale(gfx::Matrix4{}, gfx::Vector3{ .52f });
         //o->tint = gfx::ColorAlpha{ 1.0f, 1.0f, 0.0f, 1.0f };
 
         // set the object's surface from one of the texture pointers
@@ -336,7 +336,8 @@ void Project::update(seconds frame, seconds total)
     std::unordered_map<sdl::EventType, std::function<void(const sdl::Event&)>> responses;
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
-    for (int i = 1; i < 10; ++i) {
+    
+    /*for (int i = 1; i < 10; ++i) {
         // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
         gl::Matrix4 coord = glm::translate(
             objects[i]->transform, 
@@ -347,8 +348,43 @@ void Project::update(seconds frame, seconds total)
            coord,
            frame.count(), 
            gfx::Vector3{ 0,1,0 });
-    }
-   
+    }*/
+    //mercury
+    objects[1]->transform = glm::translate(objects[1]->transform, gfx::Vector3{ -5.0f, 0.0f,20.0f });
+    objects[1]->transform = glm::translate(glm::rotate(objects[1]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{0.05f,0,0.05f});
+    objects[1]->transform = glm::translate(objects[1]->transform, gfx::Vector3{ 5.0f, 0.0f,-20.0f });
+    //venus
+    objects[2]->transform = glm::translate(objects[2]->transform, gfx::Vector3{ -5.0f, 0.0f, 24.0f });
+    objects[2]->transform = glm::translate(glm::rotate(objects[2]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0,0.05f });
+    objects[2]->transform = glm::translate(objects[2]->transform, gfx::Vector3{ 5.0f, 0.0f, -24.0f });
+    //earth
+    objects[3]->transform = glm::translate(objects[3]->transform, gfx::Vector3{ -5.0f, 0.0f,30.5f });
+    objects[3]->transform = glm::translate(glm::rotate(objects[3]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[3]->transform = glm::translate(objects[3]->transform, gfx::Vector3{ 5.0f, 0.0f,-30.5f });
+    //moon
+    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ -5.0f, 4.0f,55.5f });
+    objects[4]->transform = glm::translate(glm::rotate(objects[4]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 5.0f, -4.0f,-55.5f });
+    //mars
+    objects[5]->transform = glm::translate(objects[5]->transform, gfx::Vector3{ -5.0f, 0.0f,51.5f });
+    objects[5]->transform = glm::translate(glm::rotate(objects[5]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[5]->transform = glm::translate(objects[5]->transform, gfx::Vector3{ 5.0f, 0.0f,-51.5f });
+    //juipter
+    objects[6]->transform = glm::translate(objects[6]->transform, gfx::Vector3{ -5.0f, 0.0f,48.5f });
+    objects[6]->transform = glm::translate(glm::rotate(objects[6]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[6]->transform = glm::translate(objects[6]->transform, gfx::Vector3{ 5.0f, 0.0f,-48.5f });
+    //saturn
+    objects[7]->transform = glm::translate(objects[7]->transform, gfx::Vector3{ -5.0f, 0.0f,73.5f });
+    objects[7]->transform = glm::translate(glm::rotate(objects[7]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[7]->transform = glm::translate(objects[7]->transform, gfx::Vector3{ 5.0f, 0.0f,-73.5f });
+    //uranus
+    objects[8]->transform = glm::translate(objects[8]->transform, gfx::Vector3{ -5.0f, 0.0f,120.5f });
+    objects[8]->transform = glm::translate(glm::rotate(objects[8]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[8]->transform = glm::translate(objects[8]->transform, gfx::Vector3{ 5.0f, 0.0f,-120.5f });
+    //neptune
+    objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ -5.0f, 0.0f,145.5f });
+    objects[9]->transform = glm::translate(glm::rotate(objects[9]->transform, frame.count(), gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
+    objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ 5.0f, 0.0f,-145.5f });
 
     /* TODO: Disable translation and glow light
     
