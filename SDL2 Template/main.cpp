@@ -121,8 +121,8 @@ Project::Project(int w, int h)
 
     //    o->surface = std::shared_ptr<gfx::Texture>{ sand };
     //}
-    
-    // The Venus
+    //
+    // //The Venus
     //{   
     //    auto o = new gl::Object{ sun, renderer };
     //    objects.push_back(o);
@@ -238,7 +238,7 @@ Project::Project(int w, int h)
     //}
 
     renderer << lights;
-    renderer.Uniform<gfx::Color>("ambient") = gfx::Color{ .95f };
+    renderer.Uniform<gfx::Color>("ambient") = gfx::Color{ 1.2f };
     gfx::Light::Source scene_lighting[] = {
         gfx::Light::Source::Directional(gfx::Vector3{-.4f, -.75f, .35f}, gfx::Color{.3f}),
         gfx::Light::Source::Point(gfx::Point3{0, 1, -1}, 7.5f),
@@ -246,6 +246,7 @@ Project::Project(int w, int h)
     {
         using namespace std;
         auto lighting = lights.Access();
+        scene_lighting[1].kind = 0;
         copy(begin(scene_lighting), end(scene_lighting), begin(*lighting));
     }
 }
@@ -255,6 +256,8 @@ static float centerCamera = 9.5f;
 static int countDown = 1000;
 static float m_angle = 0.0f;
 static gl::Matrix4 m_coord;
+
+static gfx::Color m_light = gfx::Color{ 1.2f };
 
 int Project::operator()(const std::vector<std::string>& args)
 {
@@ -285,12 +288,14 @@ int Project::operator()(const std::vector<std::string>& args)
                     isHoldingShiftKey = true;
 
                 else if (keySym == SDLK_r) {
+                    m_light = gfx::Color{ 0.0f, 0.0f, 0.0f };
                     cam.Access()->facing = glm::lookAtLH(gfx::Point3{ 6, 2, -16 }, gfx::Point3{ 9.5f,0.0f,0.0f }, gfx::Vector3{ 0, 1, 0 });
                 }
 
                 else if (keySym == SDLK_SPACE) {
                     auto c = cam.Access();
                     cout << "Facing: " << glm::to_string(c->facing) << endl;
+                    cout << "Light: " << glm::to_string(m_light) << endl;
                 }
                 else if (keySym == SDLK_p) {
                     auto c = cam.Access();
@@ -314,6 +319,15 @@ int Project::operator()(const std::vector<std::string>& args)
                     mEarth->transform = coord;
 
                     cout << "Shift to coordinate: " << glm::to_string(coord) << endl;
+                }
+                else if (keySym == SDLK_1) {
+                    m_light.r += 0.2f;
+                }
+                else if (keySym == SDLK_2) {
+                    m_light.g += 0.2f;
+                }
+                else if (keySym == SDLK_3) {
+                    m_light.b += 0.2f;
                 }
             }
             else if (event.type == SDL_KEYUP) {
@@ -383,31 +397,31 @@ void Project::update(seconds frame, seconds total)
     }
    
 
-    /* TODO: Disable translation and glow light
+    // TODO: Disable translation and glow light
     
-    objects.front()->transform = glm::translate(gfx::Matrix4{}, { 2 + sin(total.count()), 0.0f, 0.0f });
+    //objects.front()->transform = glm::translate(gfx::Matrix4{}, { 2 + sin(total.count()), 0.0f, 0.0f });
 
     // set the angle of the directional light
-    float t = sinf(total.count());
-    float x = sinf(t);
-    float y = cosf(t);
-    auto lighting = lights.Access();
+    //float t = sinf(total.count());
+    //float x = sinf(t);
+    //float y = cosf(t);
+    //auto lighting = lights.Access();
 
-    // change the directional light so that it swings 
-    // from the upper left to the upper right and back. 
-    (*lighting)->angle = gfx::Vector3{ x, y, 0.5f };
-    (*lighting)->kind = 1;
-    (*lighting)->color = gfx::Color{ 0.35f };
+    //// change the directional light so that it swings 
+    //// from the upper left to the upper right and back. 
+    //(*lighting)->angle = gfx::Vector3{ x, y, 0.5f };
+    //(*lighting)->kind = 1;
+    //(*lighting)->color = gfx::Color{ 0.35f };
 
-    // set the ambient lighting
-    // update the ambient light over time to go back and forth 
-    // between dim white light and brighter orange light 
-    // (it will probably still be fairly dim, a little goes a long way).
-    // derive the third argument from a trig function on total.count(), 
-    // but accelerate it by multiplying total.count() by a coefficient before taking the sine or cosine. 
-    auto mixed = glm::mix(gfx::Color{ 0.15f }, gfx::Color{ 0.35f, 0.0f, 0.0f }, sinf(total.count() * 2.0f));
-    renderer.Uniform<gfx::Color>("ambient") = mixed;
-    */
+    //// set the ambient lighting
+    //// update the ambient light over time to go back and forth 
+    //// between dim white light and brighter orange light 
+    //// (it will probably still be fairly dim, a little goes a long way).
+    //// derive the third argument from a trig function on total.count(), 
+    //// but accelerate it by multiplying total.count() by a coefficient before taking the sine or cosine. 
+    //auto mixed = glm::mix(gfx::Color{ 0.15f }, gfx::Color{ 0.35f, 0.0f, 0.0f }, sinf(total.count() * 2.0f));
+    renderer.Uniform<gfx::Color>("ambient") = m_light;
+    
 }
 
 void Project::render() const
