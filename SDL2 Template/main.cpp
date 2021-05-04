@@ -353,9 +353,9 @@ void Project::update(seconds frame, seconds total)
     objects[3]->transform = glm::translate(glm::rotate(objects[3]->transform, frame.count() * 0.35f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.0f,0.0f,0.05f });
     objects[3]->transform = glm::translate(objects[3]->transform, gfx::Vector3{ 5.0f, 0.0f,-30.5f });
     //moon
-    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 0.0f, 4.0f,60.5f });
+    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 0.0f, 4.0f,55.5f });
     objects[4]->transform = glm::translate(glm::rotate(objects[4]->transform, frame.count() * 0.35f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.0f,0.0f,0.05f });
-    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 0.0f, -4.0f,-60.5f });
+    objects[4]->transform = glm::translate(objects[4]->transform, gfx::Vector3{ 0.0f, -4.0f,-55.5f });
     //mars
     objects[5]->transform = glm::translate(objects[5]->transform, gfx::Vector3{ -5.0f, 0.0f,51.5f });
     objects[5]->transform = glm::translate(glm::rotate(objects[5]->transform, frame.count() * 0.3f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.0f,0.0f,0.05f });
@@ -391,7 +391,7 @@ void Project::render() const
 int main(int argc, char* argv[])
 {
     using namespace std;
-    cout << "Author: Tu Tong (0262620)\n";
+    cout << "Author: Tu Tong (0262620)\n Brian Sarmiento (0254259)";
     cout << "Use arrow keys to move cam up/down/lef/right\n";
     cout << "Press Mouse scroll up/down to adjust the zoom\n";
     cout << "Press Mouse scroll up/down with left Shift to adjust the center of camera\n";
