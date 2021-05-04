@@ -456,6 +456,9 @@ xcopy /y "$(ProjectDir)*.glsl" "$(OutDir)"</Command>
   <ItemGroup>
     <CopyFileToFolders Include="2k_neptune.tga" />
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="8k_venus_surface.tga" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

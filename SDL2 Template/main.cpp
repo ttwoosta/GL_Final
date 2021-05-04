@@ -129,12 +129,10 @@ Project::Project(int w, int h)
 
         // set the object's surface from one of the texture pointers
         // Load texture into memory    
-
-        /* Not ready yet
         gl::Texture* sand = new gfx::Texture;
-        *sand <<= image::TGA{ "earth_8k.tga" };
+        *sand <<= image::TGA{ "8k_venus_surface.tga" };
 
-        o->surface = std::shared_ptr<gfx::Texture>{ sand };*/
+        o->surface = std::shared_ptr<gfx::Texture>{ sand };
     }
 
     {   // The earth
@@ -340,18 +338,6 @@ void Project::update(seconds frame, seconds total)
     responses.emplace(sdl::EventType::Quit, [this](const sdl::Event&) { running = false; });
     SDL.ProcessEvents(responses);
     
-    /*for (int i = 1; i < 10; ++i) {
-        // objects[i]->transform = glm::rotate(objects[i]->transform, frame.count() * .5f, gfx::Vector3{ 1,0,0 });
-        gl::Matrix4 coord = glm::translate(
-            objects[i]->transform, 
-            gfx::Vector3{ 0.05f, 0.0f, 0.05f });
-
-        // https://stackoverflow.com/questions/8844585/glm-rotate-usage-in-opengl
-        objects[i]->transform = glm::rotate(
-           coord,
-           frame.count(), 
-           gfx::Vector3{ 0,1,0 });
-    }*/
     //sun
     objects[0]->transform = glm::rotate(objects[0]->transform, frame.count() * -0.5f, gfx::Vector3{ 0,1,0 }); 
     //mercury
@@ -390,32 +376,7 @@ void Project::update(seconds frame, seconds total)
     objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ -5.0f, 0.0f,145.5f });
     objects[9]->transform = glm::translate(glm::rotate(objects[9]->transform, frame.count() * 0.3f, gfx::Vector3{ 0,1,0 }), gfx::Vector3{ 0.05f,0.0f,0.05f });
     objects[9]->transform = glm::translate(objects[9]->transform, gfx::Vector3{ 5.0f, 0.0f,-145.5f });
-
-    /* TODO: Disable translation and glow light
     
-    objects.front()->transform = glm::translate(gfx::Matrix4{}, { 2 + sin(total.count()), 0.0f, 0.0f });
-
-    // set the angle of the directional light
-    float t = sinf(total.count());
-    float x = sinf(t);
-    float y = cosf(t);
-    auto lighting = lights.Access();
-
-    // change the directional light so that it swings 
-    // from the upper left to the upper right and back. 
-    (*lighting)->angle = gfx::Vector3{ x, y, 0.5f };
-    (*lighting)->kind = 1;
-    (*lighting)->color = gfx::Color{ 0.35f };
-
-    // set the ambient lighting
-    // update the ambient light over time to go back and forth 
-    // between dim white light and brighter orange light 
-    // (it will probably still be fairly dim, a little goes a long way).
-    // derive the third argument from a trig function on total.count(), 
-    // but accelerate it by multiplying total.count() by a coefficient before taking the sine or cosine. 
-    auto mixed = glm::mix(gfx::Color{ 0.15f }, gfx::Color{ 0.35f, 0.0f, 0.0f }, sinf(total.count() * 2.0f));
-    renderer.Uniform<gfx::Color>("ambient") = mixed;
-    */
 }
 
 void Project::render() const
