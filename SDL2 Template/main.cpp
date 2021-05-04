@@ -245,6 +245,9 @@ Project::Project(int w, int h)
         auto lighting = lights.Access();
         copy(begin(scene_lighting), end(scene_lighting), begin(*lighting));
     }
+
+    // shift the camera to the left to center the sun
+    cam << gfx::Vector3{ 10.0f,0,0 };
 }
 
 static bool isHoldingShiftKey = false;
