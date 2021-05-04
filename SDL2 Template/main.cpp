@@ -235,7 +235,7 @@ Project::Project(int w, int h)
     }
 
     renderer << lights;
-    renderer.Uniform<gfx::Color>("ambient") = gfx::Color{ .95f };
+    renderer.Uniform<gfx::Color>("ambient") = gfx::Color{ 1.2f };
     gfx::Light::Source scene_lighting[] = {
         gfx::Light::Source::Directional(gfx::Vector3{-.4f, -.75f, .35f}, gfx::Color{.3f}),
         gfx::Light::Source::Point(gfx::Point3{0, 1, -1}, 7.5f),
