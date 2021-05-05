@@ -3,7 +3,7 @@
 //  gfxLite
 //
 //  Created by Nevin Flanagan on 12/21/20.
-//
+//  Developed by Tu Tong & Brian Sarmiento
 
 #include <iostream>
 #include <sstream>
@@ -391,7 +391,7 @@ void Project::render() const
 int main(int argc, char* argv[])
 {
     using namespace std;
-    cout << "Author: Tu Tong (0262620)\n Brian Sarmiento (0254259)";
+    cout << "Author: Tu Tong (0262620)\nBrian Sarmiento (0254259)\n";
     cout << "Use arrow keys to move cam up/down/lef/right\n";
     cout << "Press Mouse scroll up/down to adjust the zoom\n";
     cout << "Press Mouse scroll up/down with left Shift to adjust the center of camera\n";
